@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{messageText}}</h1>
+            <input type="text" v-model="messageText" />
+        </div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.9/vue.min.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data:{
+                messageText: "Text"
+            }
+        });
+    </script>
+</html>
