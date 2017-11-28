@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="zipCode"/>
+            <span>{{zipCity}}</span>
+        </div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.9/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data:{
+                zipCode: "",
+                zipCity: ""
+            },
+            watch:{
+                zipCode(){
+                    this.zipCity = ""
+                    if(this.zipCode.length == 5){
+                        this.checkCities()
+                    }
+                }
+            },
+            methods:{
+                checkCities:_.debounce(function(){
+                    var app = this
+                    app.zipCity = "Loading..."
+                    
+                    axios.get('http://ziptasticapi.com/' + app.zipCode)
+                    .then(function(response){
+                        app.zipCity = response.data.city
+                    })
+                    .catch(function(error){
+                        app.zipCity = "Invalid zipcode"
+                    })
+                },500)
+            }
+        });
+    </script>
+</html>
