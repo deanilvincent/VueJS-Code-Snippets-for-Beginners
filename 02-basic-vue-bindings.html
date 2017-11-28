@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            [v-cloak]{
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <h1 :title="title">{{messageText}}</h1>
+
+            <img :src="url" :title="title" :alt="title" width="300" height="300"/>
+        </div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.9/vue.min.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data:{
+                messageText: "Text",
+                title: "I am title with date" + new Date(),
+                url: "https://cdn.pixabay.com/photo/2017/11/25/12/34/hamburg-2976711_960_720.jpg"
+            }
+        });
+    </script>
+</html>
