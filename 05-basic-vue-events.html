@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div id="app">
+            <p>
+                Link here: <a :href="url">{{clearUrl}}</a>
+            </p>
+            <input type="text" v-model="url" />
+            <button @click="generateUrl">Generate Correct Url</button>
+
+            <h1>Counter: {{counter}}</h1>
+            <button @click="addCounter">+</button>
+            <button @click="minusCounter">-</button>
+        </div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.9/vue.min.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data:{
+                counter:0,
+                url: "",
+                clearUrl: ""
+            },
+            methods:{
+                generateUrl(){
+                    this.clearUrl = this.url.replace(/^https?s:\/\//,'').replace(/\/$/, '')
+                }, 
+                addCounter(){
+                    this.counter += 1
+                },
+                minusCounter(){
+                    this.counter -= 1
+                }
+            }
+        });
+    </script>
+</html>
